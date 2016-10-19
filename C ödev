@@ -1,0 +1,654 @@
+//Mustafa AKAR 141602001
+#include<stdio.h>
+#include<locale.h>
+#include<stdlib.h>
+#include<conio.h>
+
+void sayibulma();
+int kullanici_deneme(int,int);
+void xoxoyunu();
+void loto();
+void sirala(int []);
+void bil_ve_kul_karsilastir(int [],int []);
+void tum_cikan_sayilari_siralama(int [],int);
+void cikis(){exit(0);}
+
+int main()
+{//MAİN FONKSİYONU BASLANGICI
+	system("color F");
+	int secim;
+	setlocale(LC_ALL,"Turkish");//türkçe karakter destegi
+	
+	while(1)
+	{
+		
+			system("cls");
+			
+			printf("\n\n\t\t**----------MENU----------**\n\n");
+			printf("\t[1]-Sayı Bulma\n\n");
+			printf("\t[2]-XOX Simulasyonu\n\n");
+			printf("\t[3]-Sayısal Loto Simulasyonu\n\n");
+			printf("\t[4]-Çıkış\n");
+			
+			printf("\n\nSeçiminizin Sıra Numarasını Yazıp Enter Tuşuna Basmanız Yeterli=");
+			scanf("%d",&secim);
+			
+			if(secim>0 && secim<5)
+			{
+			
+				switch(secim)
+				{
+					case 1: sayibulma(); system("cls"); break;
+					case 2: xoxoyunu(); system("cls"); break;
+					case 3: loto(); system("cls"); break;
+					case 4: cikis(); system("cls"); break;
+					default: 
+					system("cls");
+				}
+				
+			}
+			
+	}
+	
+	system("PAUSE");
+	return 0;
+	
+}
+
+int kullanici_deneme(sayi,deneme) 
+{
+	int tahmin=0;
+	while(1)
+	
+	{
+		printf("\nTahmininizi Girin=");//Kullanıcının Tahmini Alınıyor.
+		scanf("%d",&tahmin);
+		
+		if(tahmin>0 && tahmin<100){break;}
+		
+		else printf("\n0 - 100 arasında satı girin\n");
+	}
+	
+	
+	if(sayi-tahmin==0)
+	{
+		return (deneme+1);
+	}
+	
+	else
+	{
+		
+		if(sayi<tahmin){deneme=deneme+1; printf("\n\t---ASAGI---\n"); return kullanici_deneme(sayi,deneme);}
+		
+		if(sayi>tahmin){deneme=deneme+1; printf("\n\t---YUKARI---\n"); return kullanici_deneme(sayi,deneme);}
+		
+	}
+	
+}
+
+void sayibulma()
+{
+	system("cls");
+	
+	printf("\n\n\t\t------Sayı Tahmin Oyununa Hoşgeldiniz-------\n\n");
+	printf("Sayısal Tahmininizi Ekrana Yazdıktan Sonra Enter Tuşuna Basmanız Yeterlidir\n\n");
+	
+	srand(time(NULL));
+	
+	int uretilensayi=1+rand()%100;//Rastgele sayı üretildi
+   	int sayi,deger,deneme=0,gelen=0;
+  	
+	int y= kullanici_deneme(uretilensayi,deneme);//fonksiyona uretilensayi ve kullanıcının deneme sayısı gönderildi
+	
+	system("cls");
+  	printf("\n\n\t   ****Tebrikler****\n\t Tahmin Edilen Sayı==%d\n\tSayıyı==%d denemede buldunuz\n",uretilensayi,y);
+  	
+	  
+  	printf("\n\tTekrar Oynamak istiyormusunuz?\n");
+  	printf("\n\t [1] EVET\t  [2] HAYIR");
+  	
+	while(1)
+	{
+	  
+		printf("\n\nSeciminiz başındaki sayıyı yazıp Enter tusuna basın==");
+		scanf("%d",&gelen);
+		if(gelen==1 || gelen==2){break;}
+		
+  	}
+	
+	if(gelen==1){sayibulma();}
+	if(gelen==2){}
+    
+}
+
+void xoxoyunu()
+{//XOX OYUN BAŞLANGICI
+		
+		int oyun[3][3]={0};	
+		int kullanicitahminyerleri[9]={-1,-1,-1,-1,-1,-1,-1,-1,-1};//kullanıcını gridigi degerleri budiziye atadım
+		int i=0,j=0,genel=0,alinan=0,modu=0,kontrol=0,son=1,kisi=0;
+		
+		system("cls");
+		
+		for(genel=0; genel<10; genel++)
+		
+		{//for döngüsünün  başlangıcı
+		
+			kontrol=0;
+			printf("XOX Oyununa Hosgeldiniz\n");
+			printf("\n");
+			printf("1---2---3\n4---5---6\n7---8---9\n\n");
+				
+				for(i=0; i<3; i++)
+				{
+				
+					for(j=0; j<3; j++)
+					{
+						if(oyun[i][j]==0) printf(" . ");
+						if(oyun[i][j]==1)printf(" X ");
+						if(oyun[i][j]==2)printf(" O ");
+					}
+					
+					printf("\n");
+				}
+			
+				
+				if(son==2){printf("\n\tOyunu [%d].Oyuncu Kazandi",kisi);break;}
+				
+				if(genel==9){printf("\n\tOyunu Berabere Bitti\n"); break;}
+				
+				if(genel%2==0){kisi=1;}
+				
+				else{kisi=2;}
+				
+				printf("\n\n[%d]. Oyuncu [1] ile [9] Arasindaki Seciminiz==",kisi);
+				scanf("%d",&alinan);
+				
+				alinan=alinan-1;//kullanıcının girdiği deger 1 düşülürdü çünkü kullanı 1 den itibaren sayı girmeye başlıyor ama matris 0 dan başlıyor
+				
+				if(alinan>-1 && alinan<9)
+					{
+				
+							for(i=0; i<9; i++)
+							{
+								
+								if (kullanicitahminyerleri[i]==alinan) {kontrol++; genel--;} //kullanıcın aynı degeri iki kere girmedidinden emin olunuyor
+							}
+						
+									if(kontrol==0) 
+									{
+										
+										kullanicitahminyerleri[genel]=alinan; //kullanıcının girdigi deger atama yapıldı
+								
+										if(genel%2==0)
+										{
+											
+											if(alinan>-1 && alinan<3) {oyun[0][alinan]=1; }
+											if(alinan>2 && alinan<6)  {modu=(alinan%3); oyun[1][modu]=1;}
+											if(alinan>5 && alinan<9)  {modu=(alinan%3); oyun[2][modu]=1;}
+										}
+										
+										else
+										{
+										
+											if(alinan>-1 && alinan<3) {oyun[0][alinan]=2;}
+											if(alinan>2 && alinan<6)  {modu=(alinan%3);oyun[1][modu]=2;}
+											if(alinan>5 && alinan<9)  {modu=(alinan%3);oyun[2][modu]=2;} 
+										
+										}
+												for(i=0; i<3; i++)
+												{//üc secenegin yan yana gelmesi yada çapraz gelmesi kontrol ediliyor
+													
+														if(oyun[i][0]==1 && oyun[i][1]==1 && oyun[i][2]==1 || oyun[i][0]==2 && oyun[i][1]==2 && oyun[i][2]==2)
+														{
+															son=2; break;
+														}
+														
+														if(oyun[0][i]==1 && oyun[1][i]==1 && oyun[2][i]==1 || oyun[0][i]==2 && oyun[1][i]==2 && oyun[2][i]==2)
+														{
+															son=2; break;
+														}
+														
+														if(oyun[0][0]==1 && oyun[1][1]==1 && oyun[2][2]==1 || oyun[0][0]==2 && oyun[1][1]==2 && oyun[2][2]==2)
+														{
+															son=2; break;
+														}
+														
+														if(oyun[0][2]==1 && oyun[1][1]==1 && oyun[2][0]==1 || oyun[0][2]==2 && oyun[1][1]==2 && oyun[2][0]==2)
+														{
+															son=2; break;
+														}
+													
+												}
+											
+										system("cls");
+									}
+									
+									else {system("cls");printf("[%d]. Oyuncu Dolu Alani Sectiniz Yeniden Secim Girin\n",kisi);}
+										
+					}
+					
+					else{system("cls"); genel--; printf("[%d].oyuncu [1] ile [9] Arasinda Secim Gireceksiniz\n",kisi);}
+		
+		}//forun bitiş parantezi
+		
+		int gelen=0;
+		
+		printf("\n\tTekrar Oynamak İstermisiniz?\n");
+	  	printf("\t[1] EVET\t [2] HAYIR");
+	  	
+		while(1)
+		{
+		  	printf("\n\nSeciminizin Basındaki Sayıyı Yazıp Enter Tuşuna Basın==");
+		  	scanf("%d",&gelen);
+			
+			
+			if(gelen==1){xoxoyunu(); break;}
+			
+			if(gelen==2){break;}
+		}
+}//oyun bitiş 
+
+void loto()
+{//loto fonksiyonu başlıyor
+
+	int butun_uretilen_sayilar[200]={0},artis=-1;//kullanıcı her çekiliş yaptıgında degerlerin sıfırlanmaması için burada tanımladım
+	int secim=0;
+	
+	while(1)
+	{
+	
+		while(1)
+		{
+			system("cls");
+			printf("\n\n\t\t -----SAYISAL LOTO ÇEKİLİŞ SAYFASI-----\n");
+			printf("\n-[1] SAYISAL LOTO ÇEKİLİŞİ");
+			printf("\t\t[2] ANALİZ SONUÇLARI");
+			printf("\n\n\t\t    [3] ANA MENÜYE DÖNMEK İÇİN");
+			printf("\n\nSECİMİNİZ GİRİN VE ENTER TUŞUNA BASIN==");
+			scanf("%d",&secim);
+			if(secim==1 || secim==2 || secim==3){break;}
+			system("cls");
+		}
+		
+		system("cls");
+		
+		while(1)
+		{
+
+			int sayisal[6]={0};
+			
+			int i=0,sayivar1=0,j=0,uretilensayi=0;
+			
+			if(secim==1)
+			{
+					
+					srand(time(NULL));
+					
+					for(i=0; i<6; i++)
+					{//Sayisal Loto Doldurma Bölgesi
+						
+							uretilensayi=1+rand()%49;
+							
+							if(i==0)
+							{
+								artis=artis+1;
+				
+								sayisal[i]=uretilensayi;
+								
+								butun_uretilen_sayilar[artis]=uretilensayi;	
+							}
+							else
+							{	
+								sayivar1=0;
+							
+								for(j=0; j<=i; j++)
+								{
+									if(sayisal[j]==uretilensayi)
+									{
+									sayivar1=sayivar1+10; //Eger aynı sayıdan varsa dizinin içine atmasını engelliyor
+									}
+									
+								}
+								
+								if(sayivar1==0)
+								{
+									sayisal[i]=uretilensayi;
+									artis=artis+1;
+									butun_uretilen_sayilar[artis]=uretilensayi;
+									
+								}
+								
+								else
+								{
+									i=i-1;
+								}
+							}
+						
+					}
+			
+					printf("\n--1 İLE 49 ARASINDA 6 RAKAM GİRİN--\n");//KULLANICIDAN RAKAMLAR ALINDI
+					
+					int tahmin=0,kullanicitahmin[6]={0},sayivar=0;
+					
+					for(i=0; i<6; i++)
+					{
+						printf("\n[%d].Rakamı Girin=",(i+1));
+						scanf("%d",&tahmin);
+						
+							if(tahmin>0 && tahmin<50)
+							{	
+								sayivar=0;
+								for(j=0; j<6; j++)
+								{
+									
+									if(kullanicitahmin[j]==tahmin)
+									{
+										sayivar=1;
+									}
+										
+								}
+								
+								if(sayivar==0)
+								{
+									kullanicitahmin[i]=tahmin;
+								}
+								
+								else
+								{
+									printf("\n-----AYNI SAYI GİRMEMEYE ÖZEN GOSTERİN-----\n");
+									i--;
+								}
+							}
+							
+							else
+							{
+								printf("\n-----1 İLE 49 ARASINDA SAYI GİRİN-----\n");
+								i--;
+							}
+					}
+						
+					system("cls");
+						int secim1=0;
+					
+					printf("\n\t\t-----TAHMİN KARŞILAŞTIRMA ALANI-----\n");
+					
+						bil_ve_kul_karsilastir(sayisal,kullanicitahmin); // karsılastırma fonk diziler gonderiliyor
+					
+					printf("\n\n**BİLGİSAYAR TAHMİNİ----->>\t");
+					
+						sirala(sayisal);//diziye gönderme yapıldı
+					
+					printf("\n\n**KULLANICI TAHMİNLERİ----->>\t"); 
+					
+						sirala(kullanicitahmin);
+
+					printf("\n\n\tTEKRAR ÇEKİLİŞ İSTİYORMUSUNUZ?");
+					printf("\n  \t[1] EVET\t [2] HAYIR");
+					while(1)
+					{
+					
+						printf("\n\nSECİMİNİZ 1 YADA 2'yi TUŞLAYIN--->>");
+						scanf("%d",&secim1);
+						if(secim1==1 || secim1==2){break;}
+						
+					}
+					if(secim1==1){system("cls");}
+					if(secim1==2){system("cls"); break; }		
+				
+		
+			}// BİRİNCİ İFİN BİTİŞ NOKTASI
+			
+			
+			if(secim==2)
+			{//İKİNCİ İFİN BAŞLANGICI
+					
+					int menusecimi=0;			
+					tum_cikan_sayilari_siralama(butun_uretilen_sayilar,artis);
+					while(1)
+					{
+					
+						printf("\n\nSayısal ALT MENUSUNE DÖNMEK İÇİN 1'e Baın=");
+						scanf("%d",&menusecimi);
+						
+						if(menusecimi==1){break;}
+						
+					}
+					if(menusecimi==1)
+					{
+						system("cls");
+						break;
+						
+					}
+				
+			}
+			
+			if(secim==3)
+			{
+				main();
+			}
+			
+		}
+		
+	}
+	
+	
+}//loto fonksiyon bitimi
+
+void sirala(int sayi_siralama[6])
+{//SIRALAMA ALGORİTMASI FONKSİYONU
+	
+		int i=0,b=0,j=0,sayi=0,sirasi=0;
+		int yeni[6]={0};
+			
+		    for(i=0; i<6; i++)
+			{// SIRALAMA Algoritması
+				
+					b=0; sirasi=0;
+					
+					for(j=0; j<6; j++)
+					{
+						
+							if(b<sayi_siralama[j])
+							{
+								
+								b=sayi_siralama[j];
+								sirasi=j;
+							}
+						
+					}
+					
+				yeni[i]=b;
+				sayi_siralama[sirasi]=-1;
+			}
+		
+		for(i=5; i>-1; i--)
+		{
+			
+			printf("%d--",yeni[i]);
+		
+		}
+		
+	
+}
+
+void bil_ve_kul_karsilastir(int bilgisayar[6],int kullanici[6])
+{//KARSILAŞTIRMA FONKSİYONU BAŞLANGICI
+
+	int i=0,j=0,tutan=0,t=0;
+	int tutanlar[]={0};
+		
+	for(i=0; i<6; i++)
+	{
+		
+		for(j=0; j<6; j++)
+		{
+			
+			if(bilgisayar[i]==kullanici[j])
+			{
+				tutanlar[t]=bilgisayar[i];
+				t++;
+			}
+			
+		}
+	}
+	
+	if(t==0)
+	{
+		printf("\n\tMAALESEF HİÇ SAYI TUTTURAMADINIZ::((");
+	}
+		
+	else
+	{
+			if(t>5)
+			{
+				
+				printf("\n\n\t--TEBRİKLER 6 DA 6 TUTTURDUNUZ---");
+				
+					for(i=0; i<6; i++)
+					{
+					
+					printf("\nBİLDİGİNİZ [%d].SAYI --->> [%d]",(i+1),kullanici[i]);
+					
+					}
+			
+			}
+			else
+			{
+			
+				for(i=0; i<t; i++)
+				{
+					
+					printf("\nBİLDİGİNİZ [%d].SAYI --->> [%d]",(i+1),tutanlar[i]);
+				}
+				
+				printf("\n\n\t---TOPLAMDA %d TANE SAYI TUTURDUNUZ TEBRİKLER---",i);
+			
+			}
+			
+	}
+	
+	
+}//KARSILAŞTIR FONKSİYON BİTİMİ
+
+void tum_cikan_sayilari_siralama(int gelen[],int artis)
+{
+	
+	int i=0,kalan=0,arttir=0,j=0,secim=0,t=0;
+
+	printf("\n");
+	
+	while(1)
+	{
+		system("cls");
+		printf("\n\n[1] SAYI DİZİSİNE GÖRE LİSTELEME");
+		printf("\n\n[2] TEKRAR SAYISINA GÖRE LİSTELEME");
+		printf("\n\nSECİMİNİZ 1 YDA 2 TUŞLAYIN VE ENTER TUŞUNA BASIN==");
+		scanf("%d",&secim);
+		if(secim==1 || secim==2){break;}
+	}
+	
+	if(secim==1)
+	{
+			system("cls");
+			printf("Sayı\t Kez\tÇubuk Grafik");
+			printf("\n----\t ---\t---------");
+			
+			for(i=1; i<50; i++)
+			{
+				arttir=0;
+				for(j=0; j<artis+1; j++)
+				{
+					if(i==gelen[j])
+					{
+						arttir++;
+					}
+					
+				}
+				
+				printf("\n%d\t %d",i,arttir);
+				
+				printf("\t");
+				
+				for(j=0; j<arttir; j++)
+				{
+					printf("*");
+				}
+				
+			}
+	}
+	
+	int artisdizisi[50]={0},sayidizisi[50]={0},arttirma=0,kackerevar[100]={},sayidizisiyeni[100]={},c=0,b=0,sirasi=0,arti=0;// ikinci ifin degişkenleri tanımlandı	
+	
+	if(secim==2)
+	{
+		system("cls");
+		printf("Sayı\t Kez\tÇubuk Grafik");
+		printf("\n----\t ---\t---------");
+		
+				for(i=1; i<50; i++)
+				{
+					arttir=0;
+					for(j=0; j<artis+1; j++)
+					{
+						if(i==gelen[j])
+						{
+							arttir++;
+						}
+						
+					}
+					
+					if(arttir!=0){
+						
+						artisdizisi[arti]=arttir;
+						sayidizisi[arti]=i;	
+						arti=arti+1;
+						
+					}
+				
+				}
+				
+				for(i=0; i<arti; i++)
+				{// SIRALAMA Algoritması
+					
+						b=0; sirasi=0,c=0;
+						
+						for(j=0; j<arti; j++)
+						{
+							
+								if(b<artisdizisi[j])
+								{
+									c=sayidizisi[j]; // en fazla tekrar eden sayı geçiçi olarak bir değişkene atandı
+									b=artisdizisi[j]; // en fazla tekrar eden sayının kaç kere tekrar edilgiği geçiçi olarak bir değişkene atandı
+									
+									sirasi=j; //tekrar eden sayinin hangi sirada oldugu alindı
+								}
+							
+						}
+						
+					kackerevar[i]=b;//ikinci forun bitişinden sonra degişkneler diziye atanmaya başladı
+					sayidizisiyeni[i]=c;
+					
+					artisdizisi[sirasi]=-1;
+					sayidizisi[sirasi]=-1;
+					
+				}
+				
+				
+				for(i=0; i<arti; i++)
+				{
+					printf("\n%d\t %d",sayidizisiyeni[i],kackerevar[i]);
+					printf("\t");
+					
+					for(j=0; j<kackerevar[i]; j++)
+					{
+						printf("*");
+					}
+					
+				}	
+				
+		
+	}		
+	
+	
+}
