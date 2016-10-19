@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApplication4
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int mod = 0,j=0;
+            
+            int sayi = Convert.ToInt32(textBox1.Text);
+            
+            //int uzunluk = yeni.Length;
+            while (true)
+            {
+                
+                mod = 0;
+                mod = sayi % 2;
+                if (mod == 0)
+                {
+                    sayi = sayi / 2;
+
+                }
+                else
+                {
+                    sayi = (sayi * 3) + 1;
+
+                }
+               
+                label1.Text = "asyi=" + sayi;
+                Convert.ToInt32(listBox1.Items.Add(sayi));
+                j++;
+                if (sayi == 1) { break; }
+
+            }
+            int[]yeni=new int[j];
+            for (int i = 0; i < j; i++)
+            {
+                yeni[i] = Convert.ToInt32(listBox1.Items[i]);
+                
+            }
+            for (int i = 0; i < j; i++)
+            {
+                label2.Text = label2.Text + "\n" + yeni[i];
+            }
+            MessageBox.Show(j + "deneme buldu");
+
+        }
+    }
+}
