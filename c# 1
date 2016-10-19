@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace gnuhesaplama
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            /*int not = Convert.ToInt32(textBox1.Text);
+            int final = Convert.ToInt32(textBox2.Text);
+            int gecme = (final*70)/100 + (not* 30)/100;
+            if (gecme >= 50) { MessageBox.Show(gecme+ "geçtin","başlık",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning); }
+            if (gecme < 50) { MessageBox.Show(gecme+ "kaldın"); }*/
+            int sayi = -15;
+           // int mutlakdeger = Math.Abs(sayi);
+           double karesi = Math.Pow(sayi,2);
+            //double usteyuvarlama = Math.Ceiling(sayi);
+            label3.Text = "" + karesi;
+        }
+    }
+}
