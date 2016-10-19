@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApplication2
+{
+    public partial class Form1 : Form
+    {
+        int derskredisi = 0;
+        String harfnotu="";
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            derskredisi = Convert.ToInt32(textBox1.Text);
+            switch (harfnotu)
+            {
+                case "AA": MessageBox.Show((derskredisi * 4) + "ders kredisi"); break;
+                case "BA": MessageBox.Show((derskredisi * 3.5) + "ders kredisi"); break;
+                case "BB": MessageBox.Show((derskredisi * 3) + "ders kredisi"); break;
+                case "CB": MessageBox.Show((derskredisi * 2.5) + "ders kredisi"); break;
+                case "CC": MessageBox.Show((derskredisi * 2) + "ders kredisi"); break;
+                default: MessageBox.Show("yanlış seçim"); break;
+
+
+            }
+            
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            harfnotu = radioButton1.Text;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            harfnotu = radioButton2.Text;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            harfnotu = radioButton3.Text;
+
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            harfnotu = radioButton4.Text;
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            harfnotu = radioButton5.Text;
+
+        }
+
+        
+
+       
+    }
+}
