@@ -13,6 +13,7 @@ void bil_ve_kul_karsilastir(int [],int []);
 void tum_cikan_sayilari_siralama(int [],int);
 void cikis(){exit(0);}
 
+int butun_uretilen_sayilar[200]={0},artis=-1;
 int main()
 {//MAİN FONKSİYONU BASLANGICI
 	system("color F");
@@ -252,7 +253,7 @@ void xoxoyunu()
 void loto()
 {//loto fonksiyonu başlıyor
 
-	int butun_uretilen_sayilar[200]={0},artis=-1;//kullanıcı her çekiliş yaptıgında degerlerin sıfırlanmaması için burada tanımladım
+	//kullanıcı her çekiliş yaptıgında degerlerin sıfırlanmaması için burada tanımladım
 	int secim=0;
 	
 	while(1)
