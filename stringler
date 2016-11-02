@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApplication3
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        string cumle;
+ 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string aralıkalma;
+            cumle = "mustafa----MUSTAFA";
+            //string yenikelime = cumle.Remove(0,3);//0dan başlayıp 3 karakteri siler
+            aralıkalma = cumle.Substring(3,4);//0 başlayıp 4 karakter alır
+            label1.Text = ""+aralıkalma;
+        }
+
+        
+    }
+}
