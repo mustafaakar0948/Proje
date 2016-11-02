@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApplication4
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        int sayac=10;
+        
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label1.Text = ""+sayac;
+            sayac = sayac - 1;
+            if (sayac == -1) { timer1.Enabled = false; MessageBox.Show("süre bitti "); }
+
+        }
+        string kelime;
+        string yenikelime;
+        private void ekle_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+            sayac = 10;
+            kelime = textBox1.Text;
+            
+            if (listBox1.Items.Count != 0)
+            {
+                for (int i = 0; i < Convert.ToInt16(listBox1.Items.Count); i++)
+                {
+                    if (kelime == listBox1.Items[i]) { label3.Text = "aynı deger var gardaş"; }
+                }
+           
+                int a = Convert.ToInt16(listBox1.Items.Count - 1);
+                string sonharf = listBox1.Items[a].ToString();
+                
+                sonharf = sonharf.Substring((sonharf.Length - 1), 1);
+
+                string ilkharf = kelime.Substring(0, 1);
+               // textBox1.Clear();
+                if (sonharf == ilkharf) { label3.Text = "kelimem dogru"; }
+                else { label3.Text = "kaybetttin hacı"; timer1.Stop(); MessageBox.Show("GAME OVER"); }
+                listBox1.Items.Add(kelime);
+
+                if (listBox1.Items.Count == 5) label3.Text = "ikinci aşamaya geçtiniz";
+                
+
+            }
+            else
+            {
+                //textBox1.Clear();
+                listBox1.Items.Add(kelime);
+            }
+            
+        }
+    }
+}
