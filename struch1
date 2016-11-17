@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include<stdlib.h>
+#define MAX 100
+
+struct kuyruk{
+        int bas;
+        int son;
+        int deger[MAX];
+        
+};
+
+void sifirla(struct kuyruk *a){
+     a->son=-1;
+     a->bas=0;
+     
+     }
+
+void ekleme(struct kuyruk *a,int eklenecek){
+     
+     if(a->son==MAX-1){printf("kuyruk dolu gardaş");}
+     else{
+          a->son++;
+          a->deger[a->son]=eklenecek;
+          
+          }
+     
+     }
+
+void listele(struct kuyruk *a){
+     int i;
+     for(i=a->bas; i<=a->son; i++){
+                   printf("--%d--\n",a->deger[i]);
+                   
+                   }
+     
+     }
+
+int main(){
+    
+    struct kuyruk b;
+    sifirla(&b);
+    while(1){
+        
+        int secim=0;
+        printf("1-ekleme\n");
+        printf("2-silme\n");
+        printf("3-listele\n");
+        printf("4-cıkıs\n");
+        scanf("%d",&secim);
+        
+        if(secim==4){break;}
+        
+        switch(secim){
+                      case 1: printf("\neklencek deger:");
+                      int ekle;
+                      scanf("%d",&ekle);
+                      ekleme(&b,ekle);
+                      break;
+                      case 2: break;
+                      case 3: listele(&b);
+                      
+                      
+                      }                       
+    
+    
+    
+    
+    }
+    
+    
+    
+    system("PAUSE");
+    return 0;
+    }
