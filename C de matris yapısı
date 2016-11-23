@@ -1,3 +1,5 @@
+http://dev.mysql.com/downloads/connector/net/
+
 #include <stdio.h>
 #include <locale.h>
 
