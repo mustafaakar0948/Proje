@@ -1,0 +1,78 @@
+#include<stdio.h>
+struct bliste{
+       int deger;
+       struct bliste *sonraki;
+       
+       };
+
+struct bliste *ekle(struct bliste *ilkdugum){
+       int girilen;
+       printf("girilecek deger=");
+       scanf("%d",&girilen);
+       
+       if(ilkdugum==NULL){
+                          ilkdugum=(struct bliste*)(malloc(sizeof(struct bliste)));
+                          ilkdugum->deger=girilen;
+                          ilkdugum->sonraki=NULL;
+                          }
+       else{
+                       struct bliste *sondugum;
+                       sondugum=ilkdugum;
+                       
+                       while(sondugum->sonraki !=NULL){
+                                               sondugum=sondugum->sonraki;
+                               
+                               }
+                       struct bliste *eklenecekdugum;
+                       eklenecekdugum=(struct bliste*)(malloc(sizeof(struct bliste)));
+                       eklenecekdugum->sonraki=NULL;                        
+                       eklenecekdugum->deger=girilen;
+                       sondugum->sonraki=eklenecekdugum;
+       }
+       return ilkdugum;
+       }
+       
+void ekranayazdir(struct bliste *ilkdugum){
+     struct bliste *gecici;
+     gecici=ilkdugum;
+     
+     if(gecici==NULL){printf("liste bosşş\n");}
+     else{
+          while(1){
+                   printf("\n%d\t",gecici->deger);
+                   if(gecici->sonraki==NULL)break;
+                   else{
+                        gecici=gecici->sonraki;
+                        }
+                   
+                   }
+          
+          
+          }
+     
+     
+     }
+       
+int main(){
+    
+        struct bliste *ilkdugum;
+        ilkdugum=NULL;
+        int secim;
+        while(1){
+                 printf("\n1-ekleme  2-listeleme 3- cikis   secim:::");
+                 scanf("%d",&secim);
+                 if(secim==3) exit(1);
+                 switch(secim){
+                               case 1: ilkdugum=ekle(ilkdugum); break;
+                               case 2: ekranayazdir(ilkdugum); break;
+                               default: break;
+                               
+                               }
+                 
+                 }
+        
+        
+    
+system("PAUSE");
+return 0;    
+}
