@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApplication6
+{
+    public partial class Form1 : Form
+    {
+        int x, y,z,t;
+        public Form1()
+        {
+            InitializeComponent();
+            x = 100;
+            y = 100;
+            z = 20;
+            t = 20;
+        }
+      
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+
+            e.Graphics.FillEllipse(Brushes.Chocolate,x,y,z,t);
+            // e.Graphics.FillEllipse(Brushes.Cyan, 100, 100, 200, 200);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (x >= this.Width-80) { timer1.Stop(); } 
+            x = x + 10;
+            y = y + 10;
+            t = t + 20;
+            z = z + 20;
+            Invalidate();
+        }
+    }
+}
