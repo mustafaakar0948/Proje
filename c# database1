@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+
+namespace WindowsFormsApplication3
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            MySqlConnection baglan = new MySqlConnection("Server=localhost; Database=deneme3; Uid=root;");
+            try
+            {
+                baglan.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("fgsdf");
+            }
+            MySqlCommand command = new MySqlCommand("SELECT * FROM bilgi", baglan);
+            MySqlDataReader reader = command.ExecuteReader();
+            listBox1.Items.Add("id"+"\t"+"ad"+"\t"+"soyad"+"\t"+"no"+"\t"+"yas"+"\t");
+            while (reader.Read())
+            {
+
+                listBox1.Items.Add(reader.GetString(0) + "\t" + reader.GetString(1) + "\t" + reader.GetString(2) + "\t" + reader.GetString(3) + "\t" + reader.GetString(4));
+
+            }
+        }
+    }
+}
