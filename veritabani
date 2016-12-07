@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+namespace WindowsFormsApplication1
+{
+    public partial class Form1 : Form
+    { MySqlConnection baglan = new MySqlConnection("Server=localhost;Database=deneme;Uid=root;Pwd='';");
+        public Form1()
+        {
+           
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {  
+            baglan.Open();
+
+            MySqlDataAdapter reader = new MySqlDataAdapter("SELECT * FROM bilgi", baglan);
+
+            DataSet veriseti = new DataSet();
+            reader.Fill(veriseti, "bilgi");
+            dataGridView1.DataSource = veriseti.Tables["bilgi"];
+            baglan.Close();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+            string adi = ad.Text.ToString();
+            int no1 = Convert.ToInt16(no.Text);
+            int yas1 = Convert.ToInt16(yas.Text);
+
+            baglan.Open();
+            MySqlCommand ekle = new MySqlCommand("insert into bilgi (ad,yas,no) values ('" + adi + "'," + yas1 + "," + no1 + ")", baglan);
+            ekle.ExecuteNonQuery();
+            baglan.Close();
+     
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+             
+
+
+
+        }
+    }
+}
