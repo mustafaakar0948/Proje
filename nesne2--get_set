@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication5
+{
+    class Isci
+    {
+        public string uyeno;
+        public string Uyeno
+        {
+            set
+            {
+                if ((value.Substring(0, 3) == "101") && (value.Length==6))
+                {
+                    uyeno = "oldu";
+                }
+                else
+                {
+                    uyeno = "olmadı";
+                }
+               
+            }
+
+            get
+            {
+                return uyeno;
+            }
+            
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Isci depo = new Isci();
+            depo.Uyeno = "101225";
+            Console.WriteLine(depo.Uyeno);
+            Console.ReadLine();
+        }
+    }
+}
