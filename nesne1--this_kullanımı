@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication3
+{
+     class deneme{
+        public int a;
+        public int b;
+        public void alan(int a,int b)
+        {
+            Console.WriteLine(this.a+" "+this.b);
+        }
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            deneme d = new deneme();
+            d.a = 5;
+            d.b = 7;
+            d.alan(8, 9);
+            Console.ReadLine();
+        }
+    }
+}
