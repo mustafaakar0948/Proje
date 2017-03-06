@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            kapi odakapisi = new kapi();
+            odakapisi.cam = true;
+            odakapisi.Endegeri = 2;
+            Console.WriteLine("Yüksdeklik="+odakapisi.Endegeri);
+            Console.ReadLine();
+
+        }
+    }
+
+    class kapi
+    {
+        public bool cam;
+        string yapisi;
+        string boya;
+        int msayisi;
+        int agirlik;
+        int en;
+        int boy;
+        int kboy;
+        int ken;
+        public static bool kulp(int a)
+        {
+            
+            if (a == 1) { return true; }
+            else { return false; }
+           
+        }
+        public int Endegeri
+        {
+            set
+            {
+                en = value;
+            }
+            get
+            {
+                return en;
+            }
+        }
+        
+
+    }
+}
