@@ -11,7 +11,7 @@ namespace ConsoleApplication3
         public int b;
         public void alan(int a,int b)
         {
-            Console.WriteLine(this.a+" "+this.b);
+            Console.WriteLine(this.a+" "+this.b);//bu clasddaki degişken degerlierini kukllamaya yarar
         }
 
     }
