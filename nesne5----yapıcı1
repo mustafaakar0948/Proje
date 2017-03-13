@@ -1,0 +1,42 @@
+static void Main(string[] args)
+        {
+
+            /*Memur matbaa = new Memur();//yapıcı metod tanımlaması 
+            matbaa.ad = "mustafa";
+            Memur depo = new Memur("hasan");//direk olarak yapıcı fonk fgönderiyo
+            Console.WriteLine(depo.ad);
+           */
+            Memur m = new Memur();
+            Memur ma = new Memur(15);
+            Memur ma1 = new Memur("mute");
+            Console.ReadLine();
+        }
+        
+        
+  class Memur
+    {
+        public string ad="mute";
+        public int a;
+         public Memur()
+        {
+            Console.WriteLine("Oluşturukdu\n");
+            Console.WriteLine(a+"-*-*-*-*"+ad);
+           
+        }
+
+        public Memur(string ad,int a)
+        {
+            this.ad = ad;
+            this.a = a;
+            Console.WriteLine(a+"---"+ad);
+        }
+
+        public Memur(int a):this("murtaza",a)
+        {
+
+        }
+        public Memur(string ad) : this(ad, 0)
+        {
+
+        }
+    }
