@@ -1,0 +1,68 @@
+class Memur:IDisposable
+    {
+        public string ad="mute";
+        public int a;
+         public Memur()
+        {
+            Console.WriteLine("Oluşturukdu\n");
+            Console.WriteLine(a+"-*-*-*-*"+ad);
+           
+        }
+
+        public Memur(string ad,int a)
+        {
+            this.ad = ad;
+            this.a = a;
+            Console.WriteLine(a+"---"+ad);
+        }
+
+        public Memur(int a):this("murtaza",a)
+        {
+
+        }
+        public Memur(string ad) : this(ad, 0)
+        {
+
+        }
+
+        public Memur(Memur personel)
+        {
+            this.ad = personel.ad;
+            this.a = personel.a;
+        }
+
+       /* ~Memur()//yıkıcı team tilda işiareti önemli
+        {
+            Console.WriteLine("memur sistemden silindi");
+
+        }*/
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+            Console.WriteLine("Silind");
+        }
+        
+        
+        
+        
+        
+
+
+ static void Main(string[] args)
+        {
+
+            Memur matbaa = new Memur();//yapıcı metod tanımlaması 
+            matbaa.ad = "mustafa";
+            Memur depo = new Memur("hasan");//direk olarak yapıcı fonk fgönderiyo
+            Console.WriteLine(depo.ad);
+           
+            Memur m = new Memur();
+            Memur ma = new Memur(15);
+            Memur ma1 = new Memur("mute");
+            Memur ma2 = new Memur("hakkı",50);
+            Memur ma4 = new Memur(ma2);
+
+            ma4.Dispose();//yıkıcı  metodu çagırdık
+
+            Console.ReadLine();
+        }
