@@ -1,0 +1,41 @@
+ static void Main(string[] args)
+        {
+            deneme ahmet = new deneme();
+           
+            deneme osman = new deneme();
+            
+            deneme ayse = new deneme();
+
+            deneme mehmet = new deneme();
+           ahmet.Dispose();
+            osman.Dispose();
+            ayse.Dispose();
+            mehmet.Dispose();
+            Console.ReadLine();
+        }
+        
+        
+ class deneme
+    {
+
+        static int toplam=1;
+        public deneme()
+        {
+            toplam++;
+            Console.WriteLine("Toplam oyuncu="+toplam);
+        }
+        static deneme()
+        {
+            Console.WriteLine("Oyun başladı");
+            toplam--;
+        }
+
+        public void Dispose()
+        {
+            
+            GC.SuppressFinalize(this);
+            Console.WriteLine("bir oyuncu ayrıldı"+toplam);
+            toplam--;
+        }
+        
+    }
