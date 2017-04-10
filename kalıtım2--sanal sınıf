@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication2
+{
+    class x
+    {  
+      virtual public void metot() { Console.WriteLine("aaaaa"); }
+    }
+    class y :x
+    {
+        public override void metot()
+        {
+            Console.WriteLine("bbbbbbbb");
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            y ayse = new y();
+            x ali = new x();
+            ali = ayse;
+            ali.metot();
+
+            Console.ReadLine();
+        }
+    }
+}
