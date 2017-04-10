@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication2
+{
+    class x
+    {
+        protected int a;
+        public x(int a) { this.a = a; }
+        public int A
+        {
+            get { Console.WriteLine("X sınıfı"); return a; }
+            set { }
+        }
+        public x()
+        {
+        }
+    }
+    class y :x
+    {
+        protected int b;
+        public y(int b):base(b)
+        {
+            this.b=base.a;//yukarıdaki yapıcı metoftda aya atama yapıldı onun için base.a degerini b ye atadk
+        }
+        public int B
+        {
+            get { Console.WriteLine("Y sınıfı:"); return b; }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            y ali = new y(5);
+            Console.WriteLine("y sınıfı:"+ali.A);
+
+            Console.ReadLine();
+        }
+    }
+}
