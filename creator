@@ -1,0 +1,84 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        public interface Iodeme
+        {
+            bool odemeyap();
+        }
+
+        public class KrediKartı : Iodeme
+        {
+            public bool odemeyap()
+            {
+                return this.kredikarticekim();
+            }
+            private bool kredikarticekim()
+            {
+                Console.WriteLine("karttatn ceiklidi");
+                return true;
+            }
+        }
+        public class bankahavalesi : Iodeme
+        {
+            public bool odemeyap()
+            {
+                return this.bankahavalesii();
+            }
+            private bool bankahavalesii()
+            {
+                Console.WriteLine("havale yapıldı");
+                return true;
+            }
+
+        }
+        static void Main(string[] args)
+        {
+            creator[] creators = new creator[2];
+
+            creators[0]= new concreteCreatorA();
+            creators[1]= new concreteCreatorB();
+            
+            foreach (creator creatorsler in creators)
+            {
+                Product product = creatorsler.factorMethod();
+                Console.WriteLine("create {0}",product.GetType().Name);
+            }
+            Console.ReadLine();
+        }
+
+        abstract class Product
+        {
+
+        }
+        class concreteproducta : Product { }
+        class concreteproductb : Product { }
+
+        abstract class creator
+        {
+            public abstract Product factorMethod();
+        }
+         
+        class concreteCreatorA : creator
+        {
+            public override Product factorMethod()
+            {
+                return new concreteproducta();
+            }
+        }
+
+        class concreteCreatorB : creator
+        {
+            public override Product factorMethod()
+            {
+                return new concreteproductb();
+            }
+        }
+    }
+}
